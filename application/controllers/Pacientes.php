@@ -177,7 +177,7 @@ class Pacientes extends CI_Controller {
     
     private function save($pacienteId = NULL) {
         $this->paciente->setNome($_REQUEST['nome']);
-        $this->paciente->setDataNascimento(date("Y-m-d", strtotime(str_replace("/", "-", $_REQUEST['dataNascimento']))));
+        $this->paciente->setDataNascimento(date("Y-m-d",  strtotime($_REQUEST['dataNascimento'])));
         $this->paciente->setEmail($_REQUEST['email']);
         $this->paciente->setConvenioId($_REQUEST['convenio']);
         $this->paciente->setProfissao($_REQUEST['profissao']);

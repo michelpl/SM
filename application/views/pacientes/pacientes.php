@@ -54,7 +54,7 @@ $(document).ready(function(){
     }
 </style>
 <div class="row">
-    <div class="col-xs-6">
+    <div class="col-md-12 col-lg-8">
         <section class="panel">
             <header class="panel-heading">
                 <div class="panel-actions">

@@ -12,3 +12,73 @@ UPDATE `exame_fisico` SET `inspecao` = 'tete', `toque_retal` = 'teste', `anuscop
 WHERE `id` = '20160829231200896';
 UPDATE `consulta` SET `paciente_id` = '20160531232715278', `anamnese_id` = '20160829231200766', `exame_fisico_id` = '20160829231200896', `retorno_id` = '20160829231531516', `finalizado` = 1, `data_final` = '2016-08-29 23:15:31'
 WHERE `id` = '20160829231200744';
+INSERT INTO `endereco` (`id`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `cidade`, `uf`) VALUES ('20160829233549308', '20202020', 'Rua A', '30', '', '', 'Rio de Janeiro', 'RJ');
+INSERT INTO `paciente` (`id`, `cpf`, `nome`, `email`, `data_nascimento`, `convenio_id`, `marca_otica`, `profissao`, `estado_civil`, `data_primeira_consulta`, `status`, `endereco_id`) VALUES ('20160829233549868', '56165165165', 'Michel Lima', 'teste@teste.com', 0, '2', '654849845151', 'ABC', 'S', NULL, 1, '20160829233549308');
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `paciente` SET `nome` = 'Michel Lima', `email` = 'teste@teste.com', `data_nascimento` = 0, `convenio_id` = '2', `marca_otica` = '654849845151', `profissao` = 'ABC', `estado_civil` = 'S', `data_primeira_consulta` = NULL, `status` = 1, `endereco_id` = '20160829233549308'
+WHERE `id` = '20160829233549868';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `paciente` SET `nome` = 'Michel Lima', `email` = 'teste@teste.com', `data_nascimento` = 0, `convenio_id` = '2', `marca_otica` = '654849845151', `profissao` = 'ABC', `estado_civil` = 'S', `data_primeira_consulta` = NULL, `status` = 1, `endereco_id` = '20160829233549308'
+WHERE `id` = '20160829233549868';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `paciente` SET `nome` = 'Michel Lima', `email` = 'teste@teste.com', `data_nascimento` = '1987-01-01', `convenio_id` = '2', `marca_otica` = '654849845151', `profissao` = 'ABC', `estado_civil` = 'S', `data_primeira_consulta` = NULL, `status` = 1, `endereco_id` = '20160829233549308'
+WHERE `id` = '20160829233549868';
+UPDATE `endereco` SET `cep` = '20202020', `logradouro` = 'Rua A', `numero` = '30', `complemento` = '', `bairro` = 'AAA', `cidade` = '20202020', `uf` = 'RJ'
+WHERE `id` = '20160829233549308';
+UPDATE `paciente` SET `nome` = 'Michel Lima', `email` = 'teste@teste.com', `data_nascimento` = '1987-01-01', `convenio_id` = '2', `marca_otica` = '654849845151', `profissao` = 'ABC', `estado_civil` = 'S', `data_primeira_consulta` = NULL, `status` = 1, `endereco_id` = '20160829233549308'
+WHERE `id` = '20160829233549868';

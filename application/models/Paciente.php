@@ -61,7 +61,7 @@ class Paciente extends CI_Model {
     }
 
     public function setDataNascimento($valor) {
-        $this->dataNascimento = $valor;
+        $this->dataNascimento = date("Y-m-d",  strtotime($valor));
     }
 
     public function getConvenioId() {
@@ -101,7 +101,7 @@ class Paciente extends CI_Model {
     }
 
     public function setDataPrimeiraConsulta($valor) {
-        $this->dataPrimeiraConsulta = $valor;
+        $this->dataPrimeiraConsulta = date($valor, "Y-m-d");
     }
 
     public function getStatus() {

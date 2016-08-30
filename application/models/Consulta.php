@@ -67,7 +67,7 @@ class Consulta extends CI_Model {
     }
 
     public function setDataFinal($valor) {
-        $this->dataFinal = $valor;
+        $this->dataFinal = date("Y-m-d",  strtotime($valor));
     }  
     
     function getUserId() {

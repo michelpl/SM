@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="dataNascimento">Data de nascimento: </label>
                             <div class="col-sm-6">
-                                <input type="text" name="dataNascimento" class="form-control maskDate" placeholder="Data de nascimento(ex: 01/01/1950)" value="<?php if(isset($pacientes[0]['data_nascimento'])){ echo $pacientes[0]['data_nascimento'];} ?>" />
+                                <input type="text" name="dataNascimento" class="form-control maskDate" placeholder="Data de nascimento(ex: 01/01/1950)" value="<?php if(isset($pacientes[0]['data_nascimento'])){ echo date("d/m/Y",  strtotime($pacientes[0]['data_nascimento']));} ?>" />
                             </div>
                         </div>
                         <div class="form-group">
