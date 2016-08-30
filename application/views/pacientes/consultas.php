@@ -34,6 +34,18 @@
 
                 </div>
             </section>
+            <section class="panel">
+                <div class="panel-body">
+                    <h3>Médico responsável</h3>
+                    <ul>
+                        <li><strong><?php echo $medico->firstname . " " . $medico->lastname; ?></strong></li>
+                        <li>CRM: <?php echo $medico->crm; ?></li>
+                        
+                    </ul>
+                    <hr class="dotted short">
+                </div>
+            </section>
+            
 
 
             <section class="panel hidden ">
@@ -153,6 +165,7 @@
 
                 <!----  CONTEÚDO ABAS ------->
                 <form class="form-horizontal form-bordered" method="post" action="<?php echo base_url(); ?>index.php/Consultas/save?pacienteId=<?= $_REQUEST['pacienteId']; ?>">
+                    <input type="hidden" value="<?php echo $medico->id; ?>" name="medicoId"/>
                 <div class="tab-content">
                     <!----  ABA 2------->
                     <?php if (isset($_REQUEST['retorno'])) { ?>

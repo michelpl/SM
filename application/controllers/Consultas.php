@@ -44,10 +44,12 @@ class Consultas extends CI_Controller {
             $this->load->model('paciente');
             $this->load->model('consulta');
             
+            
             $this->page['page'] = "consultas";
             $this->page['title'] = "Consultas";
             $session_data = $this->session->userdata('logged_in');
             $this->data['username'] = $session_data['username'];
+            $this->data['medico'] = $this->getUsuario($this->session->userdata['user']['id']);
 
             $this->listar();
             $this->load->view('templates/fullHeader', $this->page);
@@ -149,6 +151,7 @@ class Consultas extends CI_Controller {
                 $this->consulta->setPacienteId($this->input->get('pacienteId'));
                 $this->consulta->setAnamneseId($anamneseId);
                 $this->consulta->setExameFisicoId($exameFisicoId);
+                $this->consulta->setUserId($_REQUEST['medicoId']);
                 if($this->consulta->save()){
                    $this->page['msg'] = "Consulta salva com sucesso";
                 } else {
@@ -163,6 +166,9 @@ class Consultas extends CI_Controller {
 
     public function saveRetorno() {
         if(isset($_REQUEST['pacienteId'])){
+            
+            
+            
             $this->load->model('consulta');
             $this->setConsultaAtual($this->consulta->naoFinalizada($_REQUEST['pacienteId']));
             $consultaAtual = $this->getConsultaAtual();
@@ -191,6 +197,11 @@ class Consultas extends CI_Controller {
         }else{
             $this->page['msg'] = "Paciente não encontrado.";
         }
+    }
+    
+    private function getUsuario($id){
+        $this->load->model('user');
+        return $this->user->getUser($id);
     }
 
 }

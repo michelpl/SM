@@ -1,1 +1,14 @@
  
+
+INSERT INTO `anamnese` (`id`, `queixa_principal`, `hda`, `historia_patologica_pregressa`) VALUES ('20160829231101999', 'teste 2309', 'teste', 'teste');
+INSERT INTO `exame_fisico` (`id`, `inspecao`, `toque_retal`, `anuscopia`, `retossigmoidoscopia`, `conduta`, `exames_complementares`) VALUES ('20160829231101155', 'tete', 'teste', 'teste', 'teste', 'teste', 'teste');
+INSERT INTO `anamnese` (`id`, `queixa_principal`, `hda`, `historia_patologica_pregressa`) VALUES ('20160829231200766', 'teste 2309', 'teste', 'teste');
+INSERT INTO `exame_fisico` (`id`, `inspecao`, `toque_retal`, `anuscopia`, `retossigmoidoscopia`, `conduta`, `exames_complementares`) VALUES ('20160829231200896', 'tete', 'teste', 'teste', 'teste', 'teste', 'teste');
+INSERT INTO `consulta` (`id`, `paciente_id`, `anamnese_id`, `exame_fisico_id`, `retorno_id`, `finalizado`, `data_final`, `user_id`) VALUES ('20160829231200744', '20160531232715278', '20160829231200766', '20160829231200896', NULL, NULL, NULL, '1');
+INSERT INTO `retorno` (`id`, `evolucao`, `exame_complementar`, `conduta`) VALUES ('20160829231531516', 'teste ret', 'testete', 'teste');
+UPDATE `anamnese` SET `queixa_principal` = 'teste 2309', `hda` = 'teste', `historia_patologica_pregressa` = 'teste'
+WHERE `id` = '20160829231200766';
+UPDATE `exame_fisico` SET `inspecao` = 'tete', `toque_retal` = 'teste', `anuscopia` = 'teste', `retossigmoidoscopia` = 'teste', `conduta` = 'teste', `exames_complementares` = 'teste'
+WHERE `id` = '20160829231200896';
+UPDATE `consulta` SET `paciente_id` = '20160531232715278', `anamnese_id` = '20160829231200766', `exame_fisico_id` = '20160829231200896', `retorno_id` = '20160829231531516', `finalizado` = 1, `data_final` = '2016-08-29 23:15:31'
+WHERE `id` = '20160829231200744';

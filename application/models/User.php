@@ -85,5 +85,32 @@ Class User extends CI_Model {
             return false;
         }
     }
+    
+    /**
+     * Retorna os dados do usuário
+     * @param int $id
+     */
+    public function getUser($id) {
+        $fields = [
+          'id'
+          ,'username'
+          ,'firstname'
+          ,'lastname'
+          ,'profile_id'
+          ,'image'
+          ,'crm'
+        ];
+        $this->db->select($fields);
+        $this->db->from($this->table);
+        $this->db->where('id', $id);
+        $this->db->limit(1);
+
+        $query = $this->db->get();
+        if ($query->num_rows() == 1) {
+            return $query->row();
+        }else{
+            return FALSE;
+        }
+    }
 
 }

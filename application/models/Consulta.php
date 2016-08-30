@@ -8,6 +8,7 @@ class Consulta extends CI_Model {
     private $retornoId;
     private $finalizado;
     private $dataFinal;
+    private $userId;
 
     public function getTable() {
         return $this->table;
@@ -67,7 +68,15 @@ class Consulta extends CI_Model {
 
     public function setDataFinal($valor) {
         $this->dataFinal = $valor;
-    }    
+    }  
+    
+    function getUserId() {
+        return $this->userId;
+    }
+
+    function setUserId($userId) {
+        $this->userId = $userId;
+    }
     
     function __construct() {
         parent::__construct();
@@ -90,6 +99,7 @@ class Consulta extends CI_Model {
                 ,"retorno_id" => $this->getRetornoId()
                 ,"finalizado" => $this->getFinalizado()
                 ,"data_final" => $this->getDataFinal()
+                ,"user_id" => $this->getUserId()
 
             );
             if ($this->db->insert($this->getTable(), $data)) {
