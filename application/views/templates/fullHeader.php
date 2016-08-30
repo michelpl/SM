@@ -411,6 +411,25 @@
 
                                         </ul>
                                     </li>
+                                    <li class="nav-parent">
+                                        <a>
+                                            <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                            <span>Convênios</span>
+                                        </a>
+                                        <ul class="nav nav-children">
+                                            <li class="convenios">
+                                                <a class="" href="<?php echo base_url(); ?>index.php/Convenios">
+                                                    <span class="">Buscar</span>
+                                                </a>
+                                            </li>
+                                            <li class="cadastrar">
+                                                <a href="<?php echo base_url(); ?>index.php/Convenios/cadastrar">
+                                                    <span>Cadastrar</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
 
 
                                 </ul>
