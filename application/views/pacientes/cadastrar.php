@@ -55,18 +55,35 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Convênio: </label>
                             <div class="col-md-6">
+
                                 <select data-plugin-selectTwo class="form-control populate" name="convenio" required title="Selecione o convênio">
                                     <?php
+                                        
                                         foreach($convenios as $convenio){
-                                            if(isset($pacientes[0]['convenio_id']) && $pacientes[0]['convenio_id'] === $convenio->id){
-                                                $selected = "selected";
-                                            }else{
-                                                $selected = "";
+                                            if(isset($pacientes[0]['convenio_id'])){
+                                                if($pacientes[0]['convenio_id'] === $convenio->id){
+                                                    $selected = "selected";
+                                                    $achou  = TRUE;
+                                                }else{
+                                                    $selected = "";
+                                                }
+                                                
                                             }
                                             echo "<option " . $selected . " value='" . $convenio->id . "'>" . $convenio->nome . "</option>";
                                         }
+                                        if(isset($pacientes[0]['convenio_id']) && !isset($achou)){
+                                            echo "<option selected='selected' value='0'>Não encontrado</option>";
+                                        }
                                     ?>
                                 </select>
+                                <?php
+                                if(isset($pacientes[0]['convenio_id']) && !isset($achou)){ ?>
+                                     <div class="alert alert-danger">
+                                        <strong>Atenção!</strong> O convênio desse paciente foi desabilitado ou não existe mais. <a href="<?php echo base_url(); ?>index.php/Convenios/editar?convenioId=<?php echo $pacientes[0]['convenio_id']; ?>" class="alert-link" target="_blank">Clique aqui para checar</a>.
+                                    </div>       
+                                <?php }
+                                ?>
+                                
                             </div>
                         </div>
                         <div class="form-group">

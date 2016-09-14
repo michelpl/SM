@@ -98,5 +98,5 @@ WHERE `id` = '20160914184231677';
 UPDATE `convenio` SET `nome` = 'TESTE 1846', `status` = 1
 WHERE `id` = '20160914184231677';
 UPDATE `convenio` SET 
-UPDATE `convenio` SET `nome` = 'TESTE 1846', `status` = '0'
-WHERE `id` = '20160914184231677';
+UPDATE `convenio` SET `nome` = 'Amil', `status` = '1'
+WHERE `id` = '1';
