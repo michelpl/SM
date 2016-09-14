@@ -103,7 +103,7 @@ class Convenio extends CI_Model{
     public function getConvenios($select) {
             $this->db
                 ->select($select)
-                ->from($this->table)
+                ->from($this->table . " as A")
                 ->where("A.status", 1);
             $query = $this->db->get();
             return $query->result();

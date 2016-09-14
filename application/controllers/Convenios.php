@@ -70,24 +70,24 @@ class Convenios extends CI_Controller {
     }
 
     public function cadastrar() {
-        if ($this->session->userdata('convenio')) {
+        if ($this->session->userdata('user')) {
             $this->load->model('convenio');
-            $this->page['page'] = "cadastrar";
+            $this->page['page'] = "convenios-cadastrar";
             $this->page['title'] = "Convenios/cadastrar";
 
             if (isset($_REQUEST['save'])) {
                 //Editar existente
                 if(isset($_REQUEST['convenioId'])){
                     if($this->save($_REQUEST['convenioId'])){
-                        redirect('Convenios?msg=Convênio salvo com sucesso', 'refresh');
+                        redirect('Convenios?msg=Registro salvo com sucesso', 'refresh');
                     }
                 //Novo    
                 }else{
                     $convenioId = $this->save();
                     if ($convenioId) {
-                        redirect('Convenios/Cadastrar?msg=Convênio cadastrado com sucesso', 'refresh');
+                        redirect('Convenios/Cadastrar?msg=Registro salvo com sucesso', 'refresh');
                     } else {
-                        $this->page['msg'] = "Não foi possível cadastrar o convênio";
+                        $this->page['msg'] = "Não foi possível efetuar o cadastro";
                     }
                 }
             }
@@ -120,13 +120,13 @@ class Convenios extends CI_Controller {
     
     private function save($convenioId = NULL) {
         $this->convenio->setNome($_REQUEST['nome']);
-        $this->convenio->setStatus(1);
+        $this->convenio->setStatus($_REQUEST['status']);
         if($convenioId){
             $this->convenio->setId($convenioId);
         }
         $id = $this->convenio->save();
         if($id) {
-            $this->page['msg'] = "Convênio salvo com sucesso";
+            $this->page['msg'] = "Registro salvo com sucesso";
             return $id;
         } else {
             $this->page['msg'] = "Ocorreu um problema ao tentar salvar o convênio";

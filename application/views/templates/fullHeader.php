@@ -1,8 +1,6 @@
-
 <!doctype html>
 <html class="fixed">
     <head>
-
         <!-- Basic -->
         <meta charset="UTF-8">
 
@@ -422,7 +420,7 @@
                                                     <span class="">Buscar</span>
                                                 </a>
                                             </li>
-                                            <li class="cadastrar">
+                                            <li class="convenios-cadastrar">
                                                 <a href="<?php echo base_url(); ?>index.php/Convenios/cadastrar">
                                                     <span>Cadastrar</span>
                                                 </a>

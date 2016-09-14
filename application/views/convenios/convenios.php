@@ -61,7 +61,7 @@ $(document).ready(function(){
                     <a href="#" class="panel-action panel-action-toggle" data-panel-toggle title="Minimizar"></a>
                 </div>
 
-                <h2 class="panel-title">Buscar convenio</h2>
+                <h2 class="panel-title">Buscar convênio</h2>
             </header>
             <div class="panel-body">
                 <form class="form-horizontal form-bordered" action="<?php echo base_url(); ?>index.php/Convenios">
@@ -120,10 +120,12 @@ $(document).ready(function(){
                                     <div class="col-md-12 col-lg-6 col-xl-6">
                                         <section class="">
                                             <div class="panel-body">
-                                                <a href="<?php echo base_url(); ?>index.php/Pacientes/editar?convenioId=<?php echo $convenio['id']; ?>">
-                                                    <i class="fa fa-edit"></i>
-                                                    Editar convenio
-                                                </a>
+                                                <h4>
+                                                    <a href="<?php echo base_url(); ?>index.php/Convenios/editar?convenioId=<?php echo $convenio['id']; ?>">
+                                                        <i class="fa fa-edit"></i>
+                                                        Editar convênio
+                                                    </a>
+                                                </h4>
                                             </div>
                                         </section>
                                     </div>
