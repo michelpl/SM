@@ -91,7 +91,7 @@ Class User extends CI_Model {
      * @param int $id
      */
     public function getUser($id) {
-        $fields = [
+        $fields = array(
           'id'
           ,'username'
           ,'firstname'
@@ -99,7 +99,7 @@ Class User extends CI_Model {
           ,'profile_id'
           ,'image'
           ,'crm'
-        ];
+        );
         $this->db->select($fields);
         $this->db->from($this->table);
         $this->db->where('id', $id);
