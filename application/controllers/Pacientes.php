@@ -64,7 +64,9 @@ class Pacientes extends CI_Controller {
                         ,A.cpf
                         ,A.data_nascimento
                         ,A.status
-                        ,A.convenio_id
+                        ,C.convenio_id
+                        ,C.nome as grupoNome
+                        ,A.grupo_id
                         ,A.marca_otica
                         ,A.profissao
                         ,A.estado_civil
@@ -176,10 +178,15 @@ class Pacientes extends CI_Controller {
     }
     
     private function save($pacienteId = NULL) {
+        if(isset($_REQUEST['grupo']) && $_REQUEST['grupo'] == 0){
+            $grupoId = $this->cadastrarNovoGrupo();
+        }else{
+            $grupoId = $_REQUEST['grupo'];
+        }
         $this->paciente->setNome($_REQUEST['nome']);
         $this->paciente->setDataNascimento(date("Y-m-d",  strtotime($_REQUEST['dataNascimento'])));
         $this->paciente->setEmail($_REQUEST['email']);
-        $this->paciente->setConvenioId($_REQUEST['convenio']);
+        $this->paciente->setGrupoId($grupoId);
         $this->paciente->setProfissao($_REQUEST['profissao']);
         $this->paciente->setEstadoCivil($_REQUEST['estadoCivil']);
         $this->paciente->setMarcaOtica($_REQUEST['marcaOtica']);
@@ -199,5 +206,20 @@ class Pacientes extends CI_Controller {
             $this->page['msg'] = "Ocorreu um problema ao tentar salvar o cadastro do paciente";
             return false;
         }
+    }
+    
+    private function cadastrarNovoGrupo(){
+        $this->load->model('grupo');
+        $this->grupo->setNome($_REQUEST['novoGrupo']);
+        $this->grupo->setConvenioId($_REQUEST['convenio']);
+        $this->grupo->setStatus(1);
+        
+        $id = $this->grupo->save();
+        if($id){
+            return $id;
+        }else{
+            return FALSE;
+        }
+        
     }
 }

@@ -98,5 +98,4 @@ WHERE `id` = '20160914184231677';
 UPDATE `convenio` SET `nome` = 'TESTE 1846', `status` = 1
 WHERE `id` = '20160914184231677';
 UPDATE `convenio` SET 
-UPDATE `grupo` SET `nome` = 'Blue 500', `convenio_id` = '1', `status` = '1'
-WHERE `id` = '1';
+INSERT INTO `paciente` (`id`, `cpf`, `nome`, `email`, `data_nascimento`, `grupo_id`, `marca_otica`, `profissao`, `estado_civil`, `data_primeira_consulta`, `status`, `endereco_id`) VALUES ('20160916183749535', '65465465465', 'PACIENTE TESTE', '', '1940-01-09', '20160916183749909', '98789894489489984', '', 'S', NULL, 1, '20160916183749152');

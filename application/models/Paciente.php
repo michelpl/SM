@@ -12,7 +12,7 @@ class Paciente extends CI_Model {
     private $nome;
     private $email;
     private $dataNascimento;
-    private $convenioId;
+    private $grupoId;
     private $marcaOtica;
     private $profissao;
     private $estadoCivil;
@@ -64,12 +64,12 @@ class Paciente extends CI_Model {
         $this->dataNascimento = date("Y-m-d",  strtotime($valor));
     }
 
-    public function getConvenioId() {
-        return $this->convenioId;
+    public function getGrupoId() {
+        return $this->grupoId;
     }
 
-    public function setConvenioId($valor) {
-        $this->convenioId = $valor;
+    public function setGrupoId($valor) {
+        $this->grupoId = $valor;
     }
 
     public function getMarcaOtica() {
@@ -145,7 +145,7 @@ class Paciente extends CI_Model {
         $this->db
                 ->select($select)
                 ->from($this->table . " as A")
-                ->join("convenio as C", "A.convenio_id = C.id", "LEFT")
+                ->join("grupo as C", "A.grupo_id = C.id", "LEFT")
                 ->join("endereco as D", "A.endereco_id = D.id", "LEFT");
         if($pacienteId){
             
@@ -175,7 +175,7 @@ class Paciente extends CI_Model {
                 , "nome" => $this->getNome()
                 , "email" => $this->getEmail()
                 , "data_nascimento" => $this->getDataNascimento()
-                , "convenio_id" => $this->getConvenioId()
+                , "grupo_id" => $this->getGrupoId()
                 , "marca_otica" => $this->getMarcaOtica()
                 , "profissao" => $this->getProfissao()
                 , "estado_civil" => $this->getEstadoCivil()
@@ -195,7 +195,7 @@ class Paciente extends CI_Model {
                 "nome" => $this->getNome()
                 , "email" => $this->getEmail()
                 , "data_nascimento" => $this->getDataNascimento()
-                , "convenio_id" => $this->getConvenioId()
+                , "grupo_id" => $this->getGrupoId()
                 , "marca_otica" => $this->getMarcaOtica()
                 , "profissao" => $this->getProfissao()
                 , "estado_civil" => $this->getEstadoCivil()
@@ -217,7 +217,8 @@ class Paciente extends CI_Model {
         $this->db
                 ->select($fields)
                 ->from($this->table . " as A")
-                ->join("convenio as C", "A.convenio_id = C.id", "LEFT")
+                ->join("grupo as C", "A.grupo_id = C.id", "LEFT")
+                ->join("convenio as D", "C.grupo_id = D.id", "LEFT")
                 ->where('A.id', $pacienteId);
 
         $query = $this->db->get();

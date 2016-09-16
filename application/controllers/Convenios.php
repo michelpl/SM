@@ -132,4 +132,11 @@ class Convenios extends CI_Controller {
             return false;
         }
     }
+    
+    public function buscarGruposJson() {
+        if(isset($_REQUEST['convenio'])){
+            $this->listar();
+            echo json_encode($this->data['convenios']);
+        }
+    }
 }

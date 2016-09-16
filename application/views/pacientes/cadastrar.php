@@ -1,5 +1,74 @@
 <script>
-    
+
+$(document).ready(function(){
+     
+     buscarGrupos();
+     $("#convenio").on("change", function(){
+         if($("#convenio option:selected" ).val() == "0"){
+           $(".grupo").hide();
+           showCadastroGrupo(0); 
+         }else{
+           $(".grupo").show();
+           buscarGrupos();
+         }
+         
+     })
+     
+     $("#convenio").on("click", function(){
+         if($("#grupo option:selected" ).val() == "0"){
+             showCadastroGrupo(1);
+         }else{
+             showCadastroGrupo(0);
+         }
+     });
+     $("#grupo").on("click", function(){
+        if($("#grupo option:selected").val() == "0"){
+            showCadastroGrupo(1);
+        }else{
+            showCadastroGrupo(0);
+        }
+     });
+     
+});
+
+function buscarGrupos(){
+    url = "<?php echo base_url(); ?>index.php/Convenios/buscarGruposJson";
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: { convenio: $("#convenio").val()}
+      })
+    .done(function(json) {
+            
+        if(json){
+            if($.parseJSON(json).length > 0){
+                html = "<option value='' id='cadastrar' selected>Selecione</option>";
+                html += "<option value='0' id='cadastrar'>Novo grupo</option>";
+            }else{
+                html = "<option value='' id='cadastrar'>Nenhum grupo enontrado</option>";
+                html += "<option value='0' id='cadastrar'>Novo grupo</option>";
+            }
+            $.each($.parseJSON(json), function() {
+                html += "<option value='" + this.id + "'";
+                if(this.id === $("#grupoId").val()){
+                    html += " selected ";
+                    $("#grupoId").val(this.id);
+                }
+                html += " >" +this.nome + "</option>";
+            });
+            
+            $("#grupo").html(html);
+        }
+    });
+}
+
+function showCadastroGrupo(exibir){
+    if(exibir == 1){
+        $(".novoGrupoBox").removeClass("hidden").show();
+    }else{
+        $(".novoGrupoBox").hide();
+    }
+}
 </script>
 <div class="row">
     <div class="col-xs-12">
@@ -52,46 +121,8 @@
                                 <input type="text" name="email" class="form-control" placeholder="E-mail - Opcional" value="<?php if(isset($pacientes[0]['email'])){ echo $pacientes[0]['email'];} ?>" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Convênio: </label>
-                            <div class="col-md-6">
-
-                                <select data-plugin-selectTwo class="form-control populate" name="convenio" required title="Selecione o convênio">
-                                    <?php
-                                        
-                                        foreach($convenios as $convenio){
-                                            if(isset($pacientes[0]['convenio_id'])){
-                                                if($pacientes[0]['convenio_id'] === $convenio->id){
-                                                    $selected = "selected";
-                                                    $achou  = TRUE;
-                                                }else{
-                                                    $selected = "";
-                                                }
-                                                
-                                            }
-                                            echo "<option " . $selected . " value='" . $convenio->id . "'>" . $convenio->nome . "</option>";
-                                        }
-                                        if(isset($pacientes[0]['convenio_id']) && !isset($achou)){
-                                            echo "<option selected='selected' value='0'>Não encontrado</option>";
-                                        }
-                                    ?>
-                                </select>
-                                <?php
-                                if(isset($pacientes[0]['convenio_id']) && !isset($achou)){ ?>
-                                     <div class="alert alert-danger">
-                                        <strong>Atenção!</strong> O convênio desse paciente foi desabilitado ou não existe mais. <a href="<?php echo base_url(); ?>index.php/Convenios/editar?convenioId=<?php echo $pacientes[0]['convenio_id']; ?>" class="alert-link" target="_blank">Clique aqui para checar</a>.
-                                    </div>       
-                                <?php }
-                                ?>
-                                
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Marca ótica: </label>
-                            <div class="col-sm-6">
-                                <input type="text" name="marcaOtica" class="form-control" placeholder="Marca ótica" value="<?php if(isset($pacientes[0]['marca_otica'])){ echo $pacientes[0]['marca_otica'];} ?>" />
-                            </div>
-                        </div>
+                       
+                        
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Profissão: </label>
                             <div class="col-sm-6">
@@ -116,6 +147,76 @@
                             </div>
                         </div>
                     </fieldset>
+                    
+                    <br>
+                    <h4>Convênio</h4>
+                    <hr class="divide-bottom " />
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Marca ótica: </label>
+                        <div class="col-sm-6">
+                            <input type="text" name="marcaOtica" class="form-control" placeholder="Marca ótica" value="<?php if(isset($pacientes[0]['marca_otica'])){ echo $pacientes[0]['marca_otica'];} ?>" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Convênio: </label>
+                        <div class="col-md-6">
+                            <select data-plugin-selectTwo class="form-control populate" name="convenio" id="convenio" required title="Selecione o convênio">
+                                <?php
+
+                                    foreach($convenios as $convenio){
+                                        if(isset($pacientes[0]['convenio_id'])){
+                                            if($pacientes[0]['convenio_id'] === $convenio->id){
+                                                $selected = "selected";
+                                                $achou  = TRUE;
+                                            }else{
+                                                $selected = "";
+                                            }
+
+                                        }
+                                        echo "<option " . $selected . " value='" . $convenio->id . "'>" . $convenio->nome . "</option>";
+                                    }
+                                    if(isset($pacientes[0]['convenio_id']) && !isset($achou)){
+                                        echo "<option selected='selected' value='0'>Não encontrado</option>";
+                                    }
+                                ?>
+                            </select>
+                            <?php
+                            if(isset($pacientes[0]['convenio_id']) && !isset($achou)){ ?>
+                                 <div class="alert alert-danger">
+                                    <strong>Atenção!</strong> O convênio desse paciente foi desabilitado ou não existe mais. <a href="<?php echo base_url(); ?>index.php/Convenios/editar?convenioId=<?php echo $pacientes[0]['convenio_id']; ?>" class="alert-link" target="_blank">Clique aqui para checar</a>.
+                                </div>       
+                            <?php }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group grupo">
+                        <label class="col-sm-2 control-label">Grupo: </label>
+                        <div class="col-md-6">
+                            <select  class="form-control" name="grupo" id="grupo" required title="Selecione o convênio">
+                                <option value=''>Selecione</option>
+                                <?php
+                                    if(isset($pacientes[0]['grupoNome']) && $pacientes[0]['grupoNome'] != ""){ 
+                                        echo "<option selected='selected' value='" . $pacientes[0]['grupo_id'] . "'>" . $pacientes[0]['grupoNome'] . "</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <input type="hidden" id="grupoId" value="<?php if(isset($pacientes[0]['grupo_id'])){ echo $pacientes[0]['grupo_id'];} ?>" />
+                        <br>
+                    </div>
+                    <div class="form-group novoGrupoBox hidden">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-md-6">
+                            <input type="text" name="novoGrupo" class="form-control" placeholder="Novo grupo" required title="Insira o grupo do convênio" />
+                        </div>
+                        <br>
+                    </div>
+                        
+                    
+                    
+                    
                     <br>
                     <h4>Endereço</h4>
                     <hr class="divide-bottom " />
