@@ -8,18 +8,14 @@ class Convenios extends CI_Controller {
     function __construct() {
 
         parent::__construct();
+        $this->load->model('convenio');
+        $this->load->model('grupo');
+        $comboConvenios = $this->convenio->getConvenios("A.*");
+        $this->data['comboConvenios'] = $comboConvenios;
     }
 
     private $page;
     private $data;
-    private $msg;
-    private $estadoCivil = array(
-        "0" => "Selecione"
-        ,"S" => "Solteiro(a)"
-        ,"C" => "Casado(a)"
-        ,"D" => "Divorciado(a)"
-        ,"V" => "Viúvo(a)"
-    );
 
     function index() {
         if ($this->session->userdata('user')) {
@@ -45,22 +41,22 @@ class Convenios extends CI_Controller {
     }
 
     private function listar() {
-        if (isset($_REQUEST['search']) && strlen($_REQUEST['search']) > 2 || isset($_REQUEST['convenioId'])) {
-            $this->load->model('convenio');
-            if (isset($_REQUEST['convenioId'])) {
-                $convenioId = $_REQUEST['convenioId'];
+        if (isset($_REQUEST['search'])  || isset($_REQUEST['convenio'])) {
+            if (isset($_REQUEST['convenio'])) {
+                $convenioId = $_REQUEST['convenio'];
                 $search = FALSE;
             } else {
                 $search = $_REQUEST['search'];
                 $convenioId = FALSE;
             }
 
-            $result = $this->convenio->search(
+            $result = $this->grupo->search(
                     " 
                         A.id
                         ,A.nome
                         ,A.status
                     ", $search
+                    ,NULL
                     , $convenioId
             );
             $this->data['convenios'] = $result;
@@ -71,20 +67,21 @@ class Convenios extends CI_Controller {
 
     public function cadastrar() {
         if ($this->session->userdata('user')) {
-            $this->load->model('convenio');
+            
             $this->page['page'] = "convenios-cadastrar";
             $this->page['title'] = "Convenios/cadastrar";
-
+            
+            
             if (isset($_REQUEST['save'])) {
                 //Editar existente
-                if(isset($_REQUEST['convenioId'])){
-                    if($this->save($_REQUEST['convenioId'])){
+                if(isset($_REQUEST['grupoId'])){
+                    if($this->save($_REQUEST['grupoId'])){
                         redirect('Convenios?msg=Registro salvo com sucesso', 'refresh');
                     }
                 //Novo    
                 }else{
-                    $convenioId = $this->save();
-                    if ($convenioId) {
+                    $grupoId = $this->save();
+                    if ($grupoId) {
                         redirect('Convenios/Cadastrar?msg=Registro salvo com sucesso', 'refresh');
                     } else {
                         $this->page['msg'] = "Não foi possível efetuar o cadastro";
@@ -102,11 +99,12 @@ class Convenios extends CI_Controller {
     
     public function editar(){
         if ($this->session->userdata('user')) {
-            if(isset($_REQUEST['convenioId']) && $_REQUEST['convenioId'] != 0){
+            if(isset($_REQUEST['grupoId']) && $_REQUEST['grupoId'] != 0){
                 $this->page['page'] = "cadastrar";
                 $this->page['title'] = "Convênios/editar";
                 
-                $this->listar();
+                $this->data['grupo'] = $this->grupo->search("A.*, B.nome as convenioNome", FALSE, $_REQUEST['grupoId']);
+                
                 $this->load->view('templates/fullHeader', $this->page);
                 $this->load->view('convenios/cadastrar', $this->data);
                 $this->load->view('templates/footer');
@@ -118,13 +116,14 @@ class Convenios extends CI_Controller {
         }
     }
     
-    private function save($convenioId = NULL) {
-        $this->convenio->setNome($_REQUEST['nome']);
-        $this->convenio->setStatus($_REQUEST['status']);
-        if($convenioId){
-            $this->convenio->setId($convenioId);
+    private function save($grupoId = NULL) {
+        $this->grupo->setNome($_REQUEST['nome']);
+        $this->grupo->setConvenioId($_REQUEST['convenio']);
+        $this->grupo->setStatus($_REQUEST['status']);
+        if($grupoId){
+            $this->grupo->setId($grupoId);
         }
-        $id = $this->convenio->save();
+        $id = $this->grupo->save();
         if($id) {
             $this->page['msg'] = "Registro salvo com sucesso";
             return $id;

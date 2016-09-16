@@ -98,5 +98,5 @@ WHERE `id` = '20160914184231677';
 UPDATE `convenio` SET `nome` = 'TESTE 1846', `status` = 1
 WHERE `id` = '20160914184231677';
 UPDATE `convenio` SET 
-UPDATE `paciente` SET `nome` = 'teste 2326', `email` = '234234234', `data_nascimento` = '1969-12-31', `convenio_id` = '0', `marca_otica` = 'Teste 2220', `profissao` = 'Teste', `estado_civil` = 'C', `data_primeira_consulta` = NULL, `status` = 1, `endereco_id` = '20160531232715417'
-WHERE `id` = '20160531232715278';
+UPDATE `grupo` SET `nome` = 'Blue 500', `convenio_id` = '1', `status` = '1'
+WHERE `id` = '1';

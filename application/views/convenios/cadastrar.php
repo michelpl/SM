@@ -18,16 +18,36 @@
                 </header>
                 <div class="panel-body">
                     <fieldset>
-                        <?php if(isset($_REQUEST['convenioId'])){?>
-                            <input type="hidden" name="convenioId" id="convenioId" value="<?php echo $_REQUEST['convenioId']; ?>" />
+                        <?php if(isset($_REQUEST['grupoId'])){?>
+                            <input type="hidden" name="grupoId" id="grupoId" value="<?php echo $_REQUEST['grupoId']; ?>" />
+                            <input type="hidden" name="convenio" id="convenio" value="<?php echo $grupo[0]['convenio_id']; ?>" />
                         <?php } ?>
-                        <br>
-                        <hr class="divide-bottom " />
-                        
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Nome do convenio: <span class="required">*</span></label>
                             <div class="col-sm-6">
-                                <input type="text" name="nome" class="form-control" placeholder="Nome do convênio" required title="Insira o nome completo do paciente" value="<?php if(isset($convenios[0]['nome'])){ echo $convenios[0]['nome'];} ?>" />
+                                <?php if(isset($grupo[0]['convenioNome'])){ ?>
+                                <input type="text" name="convenioNome" class="form-control"required value="<?php if(isset($grupo[0]['convenioNome'])){ echo $grupo[0]['convenioNome'];} ?>" disabled="disabled" />
+                                <?php }else{ ?>
+                                    <select data-plugin-selectTwo class="form-control populate" name="convenio" required title="Selecione o convênio" required title="Escolha o convenio">
+                                        <option value="">Selecione</option>
+                                        <?php
+
+                                            foreach($comboConvenios as $convenio){
+                                                echo "<option " . $selected . " value='" . $convenio->id . "'>" . $convenio->nome . "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                <?php
+                                }
+                                ?>
+                                
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Grupo: <span class="required">*</span></label>
+                            <div class="col-sm-6">
+                                <input type="text" name="nome" class="form-control" placeholder="Nome do grupo" required title="Insira o nome do grupo" value="<?php if(isset($grupo[0]['nome'])){ echo $grupo[0]['nome'];} ?>" />
                             </div>
                         </div>
                         
@@ -35,8 +55,8 @@
                             <label class="col-md-2 control-label">Status: <span class="required">*</span></label>
                             <div class="col-md-6">
                                 <select class="form-control" name="status" data-plugin-multiselect id="status" name="status">
-                                    <?php if(isset($convenios[0]['status'])){
-                                        if($convenios[0]['status'] == 1){
+                                    <?php if(isset($grupo[0]['status'])){
+                                        if($grupo[0]['status'] == 1){
                                             echo "<option value='1' selected>Ativo </option>";
                                             echo "<option value='0'>Inativo (Não será possível selecioná-lo na ficha de um paciente)</option>";
                                         }else{

@@ -54,7 +54,7 @@ $(document).ready(function(){
     }
 </style>
 <div class="row">
-    <div class="col-md-12 col-lg-8">
+    <div class="col-md-12 col-lg-6">
         <section class="panel">
             <header class="panel-heading">
                 <div class="panel-actions">
@@ -67,18 +67,23 @@ $(document).ready(function(){
                 <form class="form-horizontal form-bordered" action="<?php echo base_url(); ?>index.php/Convenios">
 
                     <div class="form-group">
-                        <label class="col-md-2 control-label">Convenio</label>
-                        <div class="col-md-10">
-                            <div class="input-group input-search">
-                                <input type="text" placeholder="Digite o nome do convenio" id="search" name="search" class="form-control">
-                                <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
+                        <label class="col-md-2 control-label">Convênio</label>
+                        
+                        <div class="col-md-7">
+                            <select data-plugin-selectTwo class="form-control populate" name="convenio" required title="Selecione o convênio" required title="Escolha o convenio">
+                                <option value="">Selecione</option>
+                                <?php
+
+                                    foreach($comboConvenios as $convenio){
+                                        echo "<option " . $selected . " value='" . $convenio->id . "'>" . $convenio->nome . "</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <button class="btn btn-primary" name="search">Buscar</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </section>
@@ -117,11 +122,11 @@ $(document).ready(function(){
                             </header>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 col-lg-6 col-xl-6">
+                                    <div>
                                         <section class="">
                                             <div class="panel-body">
                                                 <h4>
-                                                    <a href="<?php echo base_url(); ?>index.php/Convenios/editar?convenioId=<?php echo $convenio['id']; ?>">
+                                                    <a href="<?php echo base_url(); ?>index.php/Convenios/editar?grupoId=<?php echo $convenio['id']; ?>">
                                                         <i class="fa fa-edit"></i>
                                                         Editar convênio
                                                     </a>
@@ -131,11 +136,6 @@ $(document).ready(function(){
                                     </div>
                                 </div>
                                 <br>
-                                
-                                <hr class="dotted short">
-                                <h5>
-                                    
-                                </h5>
                             </div>
                         </section>
                     </div>

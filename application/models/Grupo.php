@@ -1,9 +1,10 @@
 <?php
-class Convenio extends CI_Model{
-    private $table = "convenio";
+class Grupo extends CI_Model{
+    private $table = "grupo";
     private $id = FALSE;
     private $nome;
     private $status;
+    private $convenioId;
     
     public function getTable() {
         return $this->table;
@@ -33,24 +34,34 @@ class Convenio extends CI_Model{
         $this->status = $status;
     }
 
-        
+    function getConvenioId() {
+        return $this->convenioId;
+    }
+
+    function setConvenioId($convenioId) {
+        $this->convenioId = $convenioId;
+    }
+
     function __construct()
     {
         parent::__construct();
     }
     
     /**
-     * Busca convenios com base na String passada
+     * Busca grupos com base na String passada
      * @param String $select Campos da tabela
      * @param String $search String a ser buscada
      * @return Object
      */
-    public function search($select, $search, $convenioId = NULL) {
+    public function search($select, $search, $grupoId = NULL, $convenio = NULL) {
         $this->db
                 ->select($select)
+                ->join('convenio as B', 'A.convenio_id = B.id', "LEFT")
                 ->from($this->table . " as A");
-        if($convenioId){
-            $this->db->where("A.id", $convenioId);
+        if($grupoId){
+            $this->db->where("A.id", $grupoId);
+        }elseif($convenio){
+            $this->db->where("A.convenio_id", $convenio);
         }else{
             $this->db
                 ->like('A.nome', $search);
@@ -71,6 +82,7 @@ class Convenio extends CI_Model{
             $data = array(
                 'id' => $this->getId()
                 , "nome" => $this->getNome()
+                , "convenio_id" => $this->getConvenioId()
                 , "status" => $this->getStatus()
             );
             if ($this->db->insert($this->getTable(), $data)) {
@@ -83,6 +95,7 @@ class Convenio extends CI_Model{
         }else{ 
             $data = array(
                 "nome" => $this->getNome()
+                ,"convenio_id" => $this->getConvenioId()
                 , "status" => $this->getStatus()
             );
             $this->db->where('id', $this->getId());
@@ -93,20 +106,5 @@ class Convenio extends CI_Model{
                return FALSE;
            }
         }
-    }
-    
-    /**
-     * Retorna todos os convênios
-     * @param String $select campos da consulta
-     * @return object
-     */
-    public function getConvenios($select) {
-            $this->db
-                ->select($select)
-                ->from($this->table . " as A")
-                ->order_by('A.nome')
-                ->where("A.status", 1);
-            $query = $this->db->get();
-            return $query->result();
     }
 }
