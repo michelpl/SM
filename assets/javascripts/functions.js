@@ -11,16 +11,4 @@ $(document).ready(function(){
      });
      $(".password").val("");
      
-     
-     
-     
-     
-//localStorage.setItem("ola", "mundo");
-//console.log(localStorage.getItem("ola"));
-//localStorage.removeItem("ola")
-     
-     
 });
-
-
-
