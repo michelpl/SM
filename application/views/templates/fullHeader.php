@@ -46,6 +46,7 @@
         <!-- Libraries fora do tema -->
         <script src="<?php echo base_url(); ?>assets/javascripts/functions.js"></script>
         <script src="<?php echo base_url(); ?>assets/javascripts/jquery.mask.js"></script>
+        <script src="<?php echo base_url(); ?>assets/javascripts/buscacep.js"></script>
 
         <script>
             $(document).ready(function () {

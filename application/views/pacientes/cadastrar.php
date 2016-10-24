@@ -28,6 +28,14 @@ $(document).ready(function(){
             showCadastroGrupo(0);
         }
      });
+
+    $("#buscaCep").on("click", function(){
+        alert(1);
+    })
+    $("#cep").on("keyup", function(){
+        buscaCep($("#cep").val());
+    })
+
      
 });
 
@@ -223,54 +231,56 @@ function showCadastroGrupo(exibir){
                     <div class="form-group">
                         <label class="col-md-2 control-label">CEP </label>
                         <div class="col-md-6">
-                        <div class="input-group input-group-icon">
-                            <input type="text" class="form-control maskCep" name="cep" placeholder="Digite o CEP sem pontos ou traços" value="<?php if(isset($pacientes[0]['cep'])){ echo $pacientes[0]['cep'];} ?>">
-                            <span class="input-group-addon">
-                                <span class="icon" style="cursor: pointer;"><i class="fa fa-search"></i></span>
-                            </span>
-                        </div>
+                            <div class="input-group input-group-icon">
+                                <input type="text" class="form-control" id="cep" name="cep" placeholder="Digite o CEP sem pontos ou traços" value="<?php if(isset($pacientes[0]['cep'])){ echo $pacientes[0]['cep'];} ?>">
+                                <span class="input-group-addon">
+                                    <span class="icon" style="cursor: pointer;"><i id="buscaCep" class="fa fa-search"></i></span>
+                                    <div class="loading"></div>
+                                </span>
+                            </div>
+
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Logradouro<span class="required">*</span> </label>
                         <div class="col-sm-6">
-                            <input type="text" name="logradouro" class="form-control" placeholder="Rua, Avenida, Praça, Etc..." value="<?php if(isset($pacientes[0]['logradouro'])){ echo $pacientes[0]['logradouro'];} ?>"/>
+                            <input type="text" id="logradouro" name="logradouro" class="form-control" placeholder="Rua, Avenida, Praça, Etc..." value="<?php if(isset($pacientes[0]['logradouro'])){ echo $pacientes[0]['logradouro'];} ?>"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Número<span class="required">*</span> </label>
                         <div class="col-sm-6">
-                            <input type="text" name="numero" class="form-control" placeholder="Número" value="<?php if(isset($pacientes[0]['numero'])){ echo $pacientes[0]['numero'];} ?>" />
+                            <input type="text" id="numero" name="numero" class="form-control" placeholder="Número" value="<?php if(isset($pacientes[0]['numero'])){ echo $pacientes[0]['numero'];} ?>" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Complemento </label>
                         <div class="col-sm-6">
-                            <input type="text" name="complemento" class="form-control" placeholder="Apto, Bloco, Casa, Frente/Fundos, Etc..." value="<?php if(isset($pacientes[0]['complemento'])){ echo $pacientes[0]['complemento'];} ?>" />
+                            <input type="text" id="complemento" name="complemento" class="form-control" placeholder="Apto, Bloco, Casa, Frente/Fundos, Etc..." value="<?php if(isset($pacientes[0]['complemento'])){ echo $pacientes[0]['complemento'];} ?>" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Bairro<span class="required">*</span> </label>
                         <div class="col-sm-6">
-                            <input type="text" name="bairro" class="form-control" placeholder="Bairro" value="<?php if(isset($pacientes[0]['bairro'])){ echo $pacientes[0]['bairro'];} ?>"/>
+                            <input type="text" id="bairro" name="bairro" class="form-control" placeholder="Bairro" value="<?php if(isset($pacientes[0]['bairro'])){ echo $pacientes[0]['bairro'];} ?>"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Cidade<span class="required">*</span> </label>
                         <div class="col-sm-6">
-                            <input type="text" name="cidade" class="form-control" placeholder="Cidade" value="<?php if(isset($pacientes[0]['cep'])){ echo $pacientes[0]['cep'];}else{ echo "Rio de Janeiro";} ?>"/>
+                            <input type="text" id="cidade" name="cidade" class="form-control" placeholder="Cidade" value="<?php if(isset($pacientes[0]['cep'])){ echo $pacientes[0]['cep'];}else{ echo "Rio de Janeiro";} ?>"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Estado<span class="required">*</span> </label>
                         <div class="col-md-6">
-                        <select data-plugin-selectTwo class="form-control populate" name="uf" required title="Selecione o estado">
+                        <select class="form-control " id="uf" name="uf" required title="Selecione o estado">
                             <?php
                                 foreach($estados as $uf => $estado){
                                     if(!isset($pacientes[0]['uf']) && $uf == "RJ"){
                                             $selected = "selected";
                                     }else{
-                                        if(trim($pacientes[0]['uf']) == trim($uf)){
+                                        if(isset($pacientes[0]['uf']) && trim($pacientes[0]['uf']) == trim($uf)){
                                             $selected = "selected";
                                         }else{
                                             $selected = "";

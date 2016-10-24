@@ -12,3 +12,10 @@ $(document).ready(function(){
      $(".password").val("");
      
 });
+
+function showLoading(){
+     $(".loading").show();
+}
+function hideLoading(){
+     $(".loading").hide();
+}

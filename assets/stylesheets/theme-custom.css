@@ -1,1 +1,7 @@
 /* Add here all your CSS customizations */
+.loading{
+    background: url("../images/loading.gif") no-repeat;
+    width: 32px;
+    height:32px;
+    display: none;
+}
